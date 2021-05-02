@@ -1,0 +1,69 @@
+global:
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate: {}
+  imagePullSecrets: []
+
+golangapp:
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 11
+    targetCPU: 50
+    targetMemory: 50
+  replicaCount: 1
+  containerPorts:
+    http: 9000
+  image:
+    repository: suayb/golang-echo-graphql-example
+    tag: "1.0.0"
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30020
+    clusterIP:
+    loadBalancerIP:
+  ingress:
+    enabled: true
+    certManager: false
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+    path: /
+    hostName: app.info
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 32Mi
+  livenessProbe:
+    enabled: true
+    httpGet:
+      path: /healthz
+      port: http
+      scheme: HTTP
+      httpHeaders: [ ]
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  readinessProbe:
+    enabled: true
+    httpGet:
+      path: /healthz
+      port: http
+      scheme: HTTP
+      httpHeaders: [ ]
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  customLivenessProbe: { }
+  customReadinessProbe: { }
+  environment:
+  extraVolumeMounts: []
+  extraVolumes: []
