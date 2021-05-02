@@ -20,7 +20,7 @@ docker-compose up -d
 * Helm 3.1.0
 * PV provisioner support in the underlying infrastructure
 
-## Installation for Docker-Compose Deployment
+## Installation for Kubernetes Deployment
 
 ```sh
 helm install app helm-chart/app
