@@ -1,7 +1,7 @@
 pipeline {
     environment {
-        DEPLOY = "${env.BRANCH_NAME == "master" || env.BRANCH_NAME == "develop" ? "true" : "false"}"
-        NAME = "${env.BRANCH_NAME == "master" ? "example" : "example-staging"}"
+        DEPLOY = "${env.BRANCH_NAME == "main" || env.BRANCH_NAME == "develop" ? "true" : "false"}"
+        NAME = "${env.BRANCH_NAME == "main" ? "example" : "example-staging"}"
         VERSION = '1.0.0'
         DOMAIN = 'localhost'
         REGISTRY = 'suayb/golang-echo-graphql-example'
