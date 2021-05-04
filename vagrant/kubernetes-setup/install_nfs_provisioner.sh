@@ -4,6 +4,7 @@ IP_NFS=$(hostname -I | cut -d " " -f2)
 NFS_PATH=/srv/kubedata
 RELEASE_NAME=nfs-provisioner
 NAMESPACE=nfs-system
+CHART_VERSION=4.0.10
 
 kubectl_for_root(){
 sudo mkdir /root/.kube
@@ -43,7 +44,7 @@ nfs:
 }
 
 install_nfs_provisioner(){
-  helm install ${RELEASE_NAME} --namespace ${NAMESPACE} nfs-subdir-external-provisioner/nfs-subdir-external-provisioner -f $HOME/nfs_provisioner/values.production.yaml
+  helm install ${RELEASE_NAME} --namespace ${NAMESPACE} --version ${CHART_VERSION} nfs-subdir-external-provisioner/nfs-subdir-external-provisioner -f $HOME/nfs_provisioner/values.production.yaml
 }
 
 
