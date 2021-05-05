@@ -26,6 +26,7 @@ install_docker() {
     # usermod -aG docker vagrant
     echo "======= Adding $SUDO_USER to the docker group ======="
     usermod -aG docker $SUDO_USER
+    chmod 777 /var/run/docker.sock
 }
 
 reload_docker(){

@@ -72,7 +72,7 @@ agent:
 controller:
   adminUser: ${ADMIN_USER}
   adminPassword: ${ADMIN_PASSWORD}
-  numExecutors: 1
+  numExecutors: 5
   servicePort: 8080
   jenkinsUriPrefix: ${URL_PREFIX}
   serviceType: ClusterIP
