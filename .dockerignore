@@ -32,3 +32,7 @@ vagrant
 
 # Exclude Helm Files
 helm-chart
+
+# Exclude jenkins files.
+Jenkinsfile
+Jenkinsfile.*.
