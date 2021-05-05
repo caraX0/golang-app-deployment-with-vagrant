@@ -6,8 +6,8 @@ if [ $SUDO_USER ]; then
     echo "Aborting!!!"
     exit 0
 fi
-sudo ./docker.sh
-sudo ./compose.sh
-sudo ./golang.sh
+sudo ./install_docker.sh
+sudo ./install_docker-compose
+sudo ./install_golang.sh
 
 echo "====== Please Logout & Logback in ======"
