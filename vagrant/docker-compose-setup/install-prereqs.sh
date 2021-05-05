@@ -7,7 +7,7 @@ if [ $SUDO_USER ]; then
     exit 0
 fi
 sudo ./install_docker.sh
-sudo ./install_docker-compose
+sudo ./install_docker_compose.sh
 sudo ./install_golang.sh
 
 echo "====== Please Logout & Logback in ======"
