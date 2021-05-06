@@ -51,13 +51,14 @@ listen kubernetes-apiserver-https
     mode tcp
     option log-health-checks
     timeout client 3h
-    timeout server 3h
-    server k8smaster k8smaster:6443 check check-ssl verify none inter 10000
-    balance roundrobin
+    timeout server 3h">>/etc/haproxy/haproxy.cfg
+for srv in $(cat /etc/hosts | grep k8sm | grep -v 127.0 | awk '{print $2}');do echo "    server "$srv" "$srv":6443 check check-ssl verify none inter 10000">>/etc/haproxy/haproxy.cfg
+done
+echo "    balance roundrobin
 listen kubernetes-ingress
     bind *:80
     mode tcp
-    option log-health-checks"> /etc/haproxy/haproxy.cfg
+    option log-health-checks">>/etc/haproxy/haproxy.cfg
 
 for srv in $(cat /etc/hosts | grep k8sn | grep -v 127.0 | awk '{print $2}');do echo "    server "$srv" "$srv":80 check">>/etc/haproxy/haproxy.cfg
 done
