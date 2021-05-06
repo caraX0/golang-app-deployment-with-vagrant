@@ -8,6 +8,8 @@ KUBESPRAY_PATH=${HOME}/kubespray
 SSH_PASSWORD=vagrant
 HELM_ENABLED=true
 METRIC_SERVER_ENABLED=true
+METALLB_ENABLED=true
+METALLB_IP_RANGE=192.168.12.240-192.168.12.250
 NGINX_INGRESS_ENABLED=true
 HAPROXY_ENABLED=false
 
@@ -71,6 +73,17 @@ echo
 echo "## Metric Server"
 sed -i s/"# kube_read_only_port"/"kube_read_only_port"/g inventory/mykub/group_vars/k8s-cluster/addons.yml
 sed -i s/"metrics_server_enabled: false"/"metrics_server_enabled: true"/g inventory/mykub/group_vars/k8s-cluster/addons.yml
+fi
+
+if [ "$METALLB_ENABLED" == true ]
+then
+echo
+echo "## MetalLB"
+sed -i s/"kube_proxy_strict_arp: false"/"kube_proxy_strict_arp: true"/g inventory/mykub/group_vars/k8s-cluster/k8s-cluster.yml
+sed -i s/"metallb_enabled: false"/"metallb_enabled: true"/g inventory/mykub/group_vars/k8s-cluster/addons.yml
+sed -i s/"# metallb_ip_range"/"metallb_ip_range"/g inventory/mykub/group_vars/k8s-cluster/addons.yml
+sed -i s/"#   - \"10.5.0.50-10.5.0.99\""/"  - \"${METALLB_IP_RANGE}\""/g inventory/mykub/group_vars/k8s-cluster/addons.yml
+sed -i s/"# metallb_protocol: \"layer2\""/"metallb_protocol: \"layer2\""/g inventory/mykub/group_vars/k8s-cluster/addons.yml
 fi
 
 if [ "$NGINX_INGRESS_ENABLED" == true ]
