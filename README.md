@@ -78,7 +78,7 @@ http://192.168.12.11:9000/playground
 
 ## Installation Using Vagrant for Kubernetes Deployment
 
-<img src="https://github.com/susimsek/golang-app-deployment-with-vagrant/blob/main/images/vagrant-k8s-installation.png" alt="Golang Vagrant Kubernetes Installation" width="100%" height="100%"/> 
+<img src="https://github.com/susimsek/golang-app-deployment-with-vagrant/blob/main/images/vagrant-k8s-installation.png?v=2" alt="Golang Vagrant Kubernetes Installation" width="100%" height="100%"/> 
 
 ### Prerequisites for Kubernetes Deployment
 
