@@ -1,5 +1,6 @@
 #!/bin/bash
 
+KUBERNETES_DASHBOARD_ENABLED=true
 JENKINS_ENABLED=true
 
 # DO NOT Execute this script with sudo
@@ -12,6 +13,12 @@ fi
 ./install_kubespray.sh
 sudo ./install_nfs.sh
 ./install_nfs_provisioner.sh
+if [ "$KUBERNETES_DASHBOARD_ENABLED" == true ]
+then
+echo
+echo "## Kubernetes Dashboard"
+./install_k8s_dashboard.sh
+fi
 if [ "$JENKINS_ENABLED" == true ]
 then
 echo
