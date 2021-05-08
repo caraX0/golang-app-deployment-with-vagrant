@@ -10,7 +10,7 @@ HELM_ENABLED=true
 METRIC_SERVER_ENABLED=true
 METALLB_ENABLED=true
 METALLB_IP_RANGE=192.168.12.240-192.168.12.250
-NGINX_INGRESS_ENABLED=true
+NGINX_INGRESS_ENABLED=false
 HAPROXY_ENABLED=false
 
 # Functions ########################################
@@ -137,8 +137,16 @@ sudo chmod 600 ${HOME}/.kube/config
 sudo usermod -aG docker $USER
 }
 
+enable_kubectl_autocompletion(){
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+kubectl completion bash |sudo tee /etc/bash_completion.d/kubectl
+echo 'alias k=kubectl' >>~/.bashrc
+echo 'complete -F __start_kubectl k' >>~/.bashrc
+}
+
 # Let's Go!! ########################################
 prepare_kubespray
 create_ssh_for_kubespray
 run_kubespray
 copy_cert_for_kubectl
+enable_kubectl_autocompletion
