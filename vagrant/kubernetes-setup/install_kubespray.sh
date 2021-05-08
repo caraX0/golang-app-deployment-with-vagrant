@@ -145,7 +145,7 @@ echo 'complete -F __start_kubectl k' >>~/.bashrc
 }
 
 enable_helm_autocompletion(){
-  echo 'source <(helm completion bash)' >>~/.bashrc
+echo 'source <(helm completion bash)' >>~/.bashrc
 }
 
 # Let's Go!! ########################################
@@ -154,4 +154,8 @@ create_ssh_for_kubespray
 run_kubespray
 copy_cert_for_kubectl
 enable_kubectl_autocompletion
+if [ "$HELM_ENABLED" == true ]
+then
+echo
 enable_helm_autocompletion
+fi
